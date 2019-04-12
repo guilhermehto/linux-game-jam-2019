@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://buildings/static-sentry/StaticSentry.gd" type="Script" id=1]
+[ext_resource path="res://assets/buildings/static-sentry1.png" type="Texture" id=2]
+[ext_resource path="res://assets/buildings/static-sentry2.png" type="Texture" id=3]
+[ext_resource path="res://assets/buildings/static-sentry3.png" type="Texture" id=4]
+[ext_resource path="res://assets/buildings/static-sentry4.png" type="Texture" id=5]
+[ext_resource path="res://assets/buildings/static-sentry5.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "build",
+"speed": 0.5
+} ]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.02131, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.44329, 0.0159999 ), -0.78871, 0.0, 0, 0 ]
+
+[node name="StaticSentry" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "build"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 25
+lifetime = 0.25
+emission_shape = 2
+emission_rect_extents = Vector2( 4, 2 )
+spread = 180.0
+initial_velocity = 0.0
+radial_accel = 200.0
+radial_accel_random = 1.0
+angle = 75.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 2 )
+hue_variation_curve = SubResource( 3 )
+
