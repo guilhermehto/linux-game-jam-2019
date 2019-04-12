@@ -41,4 +41,5 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 		var sentry = load("res://buildings/static-sentry/StaticSentry.tscn").instance()
 		get_parent().add_child(sentry)
 		sentry.global_position = global_position + Vector2(0, 1)
+		sentry.scale.x = 1 if sprite.flip_h else -1
 		bot.queue_building(sentry)
